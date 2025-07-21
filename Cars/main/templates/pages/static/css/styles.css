@@ -1,0 +1,129 @@
+:root {
+    --main-dark: #101820;
+    --main-gold: #F2AA4C;
+    --main-light: #fff;
+}
+body {
+    background-color: var(--main-light);
+    color: var(--main-dark);
+}
+.navbar {
+    background: var(--main-dark) !important;
+}
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: var(--main-gold) !important;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.navbar .nav-link.active,
+.navbar .nav-link:focus,
+.navbar .nav-link:hover {
+    color: var(--main-light) !important;
+    background: var(--main-gold);
+    border-radius: 8px;
+    transition: 0.2s;
+}
+.navbar-toggler {
+     border-color: var(--main-gold);
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(242,170,76, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+#logo img {
+    border-radius: 50%;
+    border: 2px solid var(--main-gold);
+    background: var(--main-light);
+}
+#carouselExampleDark {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+    margin-top: 2rem;
+}
+.carousel-caption {
+    background: rgba(16, 24, 32, 0.6);
+    border-radius: 8px;
+    color: var(--main-gold);
+    padding: 1rem 2rem;
+}
+footer {
+    background: var(--main-gold);
+    color: var(--main-dark);
+    font-weight: 500;
+}
+footer a {
+    color: var(--main-dark);
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+}
+footer a:hover {
+    color: var(--main-light);
+}
+.card {
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(238, 238, 238);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 25px;
+  gap: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.055);
+}
+.socialContainer {
+  width: 52px;
+  height: 52px;
+  background-color: rgb(44, 44, 44);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: .3s;
+}
+.containerOne:hover {
+  background-color: #d62976;
+  transition-duration: .3s;
+}
+.containerTwo:hover {
+  background-color: #00acee;
+  transition-duration: .3s;
+}
+.containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: .3s;
+}
+.containerFour:hover {
+  background-color: #128C7E;
+  transition-duration: .3s;
+}
+
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: .3s;
+}
+
+.socialSvg {
+  width: 17px;
+}
+
+.socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
