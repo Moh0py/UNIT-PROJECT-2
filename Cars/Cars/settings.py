@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'Cars',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -119,15 +120,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'main', 'static')]
-
+STATICFILES_DIRS = [BASE_DIR / 'main' / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SMARTCAR_CLIENT_ID = "075083d3-0c90-4089-919e-ffebbfedece9"
+SMARTCAR_CLIENT_SECRET = "b5adf25f-3557-4d84-96dd-33257489be11"
+SMARTCAR_REDIRECT_URI = "991166fc-486c-4153-99b4-ee96f0311c2b"
+SMARTCAR_SCOPES = ['read_vehicle_info', 'read_odometer', 'read_location', 'control_security']
