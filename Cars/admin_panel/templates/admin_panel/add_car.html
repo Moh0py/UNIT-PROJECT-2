@@ -1,0 +1,35 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+    <h2 class="text-center mt-4 mb-4">Add New Car</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="{{ form.name.id_for_label }}">Car Name</label>
+            {{ form.name }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.model.id_for_label }}">Model</label>
+            {{ form.model }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.year.id_for_label }}">Year</label>
+            {{ form.year }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.price.id_for_label }}">Price</label>
+            {{ form.price }}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.image.id_for_label }}">Car Image</label>
+            {{ form.image }}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save Car</button>
+    </form>
+  {% endblock %}

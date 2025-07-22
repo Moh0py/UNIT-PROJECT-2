@@ -1,0 +1,19 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Delete Car{% endblock %}
+
+{% block content %}
+<form method="POST" class="w-65 mx-auto">
+  {% csrf_token %}
+  <div class="text-center">
+    <p class="fw-bold">Are you sure you want to delete <strong>{{ car.name }} {{ car.model }}</strong>?</p>
+    {% if car.image %}
+      <img src="{{ car.image.url }}" alt="{{ car.name }}" style="max-width: 300px;" class="mb-3">
+    {% endif %}
+    <button type="submit" class="btn btn-danger fw-bold" onclick="return confirm('Are you sure you want to delete this car?')">
+      Delete Car
+    </button>
+    <a href="{% url 'admin_cars' %}" class="btn btn-secondary ms-3">Cancel</a>
+  </div>
+</form>
+{% endblock %}

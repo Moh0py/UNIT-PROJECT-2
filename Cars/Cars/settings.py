@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'main',
     'Cars',
     'contact',
+    'admin_panel',
 ]
 
 MIDDLEWARE = [

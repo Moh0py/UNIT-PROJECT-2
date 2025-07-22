@@ -1,0 +1,44 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Update Car{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-center">Edit Car: {{ car.name }}</h2>
+
+<div class="d-flex justify-content-center align-items-start flex-wrap">
+  <div class="w-100 w-md-50">
+    <form method="POST" enctype="multipart/form-data" class="w-100">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="{{ form.name.id_for_label }}">Car Name</label>
+        {{ form.name }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.model.id_for_label }}">Model</label>
+        {{ form.model }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.year.id_for_label }}">Year</label>
+        {{ form.year }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.price.id_for_label }}">Price</label>
+        {{ form.price }}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.image.id_for_label }}">Car Image</label>
+        {{ form.image }}
+      </div>
+      <div class="form-group d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{% url 'admin_cars' %}" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+  {% if car.image %}
+  <div class="text-center mb-3 ml-4">
+    <img src="{{ car.image.url }}" alt="{{ car.name }}" style="max-width: 300px;">
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
