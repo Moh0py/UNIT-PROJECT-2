@@ -48,7 +48,7 @@ body {
 footer {
     background: var(--main-gold);
     color: var(--main-dark);
-    font-weight: 500;
+    font-weight: 300;
 }
 footer a {
     color: var(--main-dark);
