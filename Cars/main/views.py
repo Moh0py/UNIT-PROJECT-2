@@ -8,7 +8,7 @@ def home_view(request):
     return render(request, 'pages/home.html', {'cars': cars})
 
 
-def car_detail(request, car_id):
+def car_view(request, car_id):
     car = Car.objects.all(Car, pk=car_id)
     return render(request, 'pages/car.html', {'car': car})
 
