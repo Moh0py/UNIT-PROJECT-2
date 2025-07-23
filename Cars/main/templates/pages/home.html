@@ -1,62 +1,29 @@
 {% extends 'pages/base.html' %}
 {% load static %}
 {% block content %}
-
-<!-- Hero Section -->
-<section class="hero-section text-center">
-  <div class="container">
-    <h1 class="display-4 fw-bold mb-4">Find Your Dream Car</h1>
-    <p class="lead mb-5">Browse our extensive collection of quality vehicles at competitive prices</p>
-    <a href="#cars" class="btn btn-primary btn-lg px-4 me-2">Browse Cars</a>
-    <a href="{% url 'contact_us' %}" class="btn btn-outline-light btn-lg px-4">Contact Us</a>
-  </div>
-</section>
-
-<!-- Cars Section -->
-<section class="container my-5 py-5" id="cars">
-  <div class="d-flex justify-content-between align-items-center mb-5">
-    <h2 class="fw-bold" style="color: var(--primary);">Featured Vehicles</h2>
-    <div class="dropdown">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown">
-        Filter By
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
-        <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
-        <li><a class="dropdown-item" href="#">Newest First</a></li>
-      </ul>
-    </div>
-  </div>
-  
-  <div class="row g-4">
+<section class="container my-5" id="cars">
+  <h2 class="text-center mb-4" style="color:#F2AA4C;">Our Cars</h2>
+  <div class="row g-4 justify-content-center">
     {% for car in cars %}
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card h-100">
-        {% if car.image %}
-          <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.make }} {{ car.model }}">
-        {% else %}
-          <img src="{% static 'img/car-placeholder.jpg' %}" class="card-img-top" alt="Car Image">
-        {% endif %}
-        <div class="card-body">
-          <h5 class="card-title">{{ car.make }} {{ car.model }}</h5>
-          <div class="mb-2">
-            <span class="badge bg-primary me-1">{{ car.year }}</span>
-            <span class="badge bg-secondary me-1">{{ car.mileage }} km</span>
-            <span class="badge bg-info">{{ car.transmission }}</span>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow border-0">
+          {% if car.image %}
+            <img src="{{ car.image.url }}" class="card-img-top" style="height:180px;object-fit:cover;">
+          {% else %}
+            <img src="{% static 'img/car-10.jpg' %}" class="card-img-top" style="height:180px;object-fit:cover;">
+          {% endif %}
+          <div class="card-body text-center">
+            <h5>{{ car.name }} {{ car.model }}</h5>
+            <p>Year: {{ car.year }}</p>
+            <p>${{ car.price }}</p>
           </div>
-          <p class="price-tag">${{ car.price|floatformat:2 }}</p>
-        </div>
-        <div class="card-footer bg-transparent border-top-0">
-          <a href="{% url 'car_details' car.id %}" class="btn btn-sm btn-outline-primary w-100">View Details</a>
         </div>
       </div>
-    </div>
     {% empty %}
-    <div class="col-12">
-      <div class="alert alert-info text-center">No cars available at the moment.</div>
-    </div>
+      <div class="col-12">
+        <div class="alert alert-info text-center">No cars available at the moment.</div>
+      </div>
     {% endfor %}
   </div>
 </section>
-
 {% endblock %}
