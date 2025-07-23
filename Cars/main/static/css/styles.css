@@ -15,6 +15,8 @@ h2, h3 {
 
 .navbar {
     background: var(--main-dark) !important;
+    padding: 1px;
+    margin-top: 2px;
 }
 .navbar .navbar-brand,
 .navbar .nav-link {
