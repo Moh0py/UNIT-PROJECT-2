@@ -1,45 +1,38 @@
 {% extends 'pages/base.html' %}
-{% load static %}
-
-{% block title %}{{ car.make }} {{ car.model }} Details{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-  <div class="row g-4">
-    <div class="col-md-6">
-      <div class="card shadow">
-        <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.make }} {{ car.model }}" style="object-fit:cover; height: 300px;">
-        <div class="card-body">
-          <h3 class="card-title">{{ car.make }} {{ car.model }}</h3>
-          <p class="card-text">Year: {{ car.year }}</p>
-          <p class="card-text">Engine: {{ car.engine }}</p>
-          <p class="card-text fw-bold" style="color:#F2AA4C;">${{ car.price }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 d-flex flex-column justify-content-between">
-      <div class="card shadow mb-4">
-        {% if car.image_3d %}
-        <img src="{{ car.image_3d.url }}" class="card-img-top" alt="3D {{ car.make }} {{ car.model }}" style="object-fit:cover; height: 300px;">
-        {% else %}
-        <img src="{% static 'img/car-3d-placeholder.png' %}" class="card-img-top" alt="3D View" style="object-fit:cover; height: 300px;">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <div class="container my-5">
+    <h2>{{ car.name }} {{ car.model }} ({{ car.year }})</h2>
+    <p><strong>Brand:</strong> {{ car.brand }}</p>
+    <p>{{ car.description }}</p>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        {% if car.front_image %}
+          <img src="{{ car.front_image.url }}" class="img-fluid rounded mb-3" alt="Front View">
         {% endif %}
-        <div class="card-body">
-          <h5 class="card-title">3D View</h5>
-          <p class="card-text">Experience the car in 3D!</p>
-        </div>
+        {% if car.back_image %}
+          <img src="{{ car.back_image.url }}" class="img-fluid rounded" alt="Back View">
+        {% endif %}
       </div>
-      <div>
-        <h5>Available Colors:</h5>
-        <div class="d-flex flex-wrap align-items-center gap-2">
-          {% for color in car.colors %}
-            <div title="{{ color }}" style="width:36px;height:36px;border-radius:50%; background:{{ color }};border:1.5px solid #333;"></div>
-          {% empty %}
-            <span class="text-muted">No colors listed.</span>
-          {% endfor %}
-        </div>
+      <div class="col-md-6">
+        <h4>3D Model</h4>
+        {% if car.model_3d_url %}
+          <model-viewer
+            src="{{ car.model_3d_url }}"
+            alt="{{ car.name }} 3D Model"
+            camera-controls
+            auto-rotate
+            ar
+            ios-src="{{ car.model_3d_url }}"
+            style="width: 100%; height: 300px;">
+          </model-viewer>
+        {% else %}
+          <p class="text-muted">No 3D view available.</p>
+        {% endif %}
       </div>
     </div>
   </div>
-</div>
 {% endblock %}

@@ -5,7 +5,7 @@ from .models import Car, Review
 from .forms import CarForm, ReviewForm, CarFilterForm
 
 def home_view(request):
-    cars = Car.objects.all()[:10]  
+    cars = Car.objects.all()[:3]  
     return render(request, 'pages/home.html', {'cars': cars})
 
 def all_cars(request):
@@ -26,12 +26,22 @@ def all_cars(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'all_cars.html', {'page_obj': page_obj})
+    return render(request, 'pages/all_cars.html', {'page_obj': page_obj})
 
 
 def car_detail(request, car_id):
     car = get_object_or_404(Car, pk=car_id)  
-    return render(request, 'pages/car.html', {'car': car}) 
+    related_cars = Car.objects.filter(brand=car.brand).exclude(pk=car_id)[:4]
+    reviews = car.reviews.all()
+
+    context = {
+        'car': car,
+        'related_cars': related_cars,
+        'reviews': reviews,
+        'form': ReviewForm()
+    }
+    return render(request, 'pages/car_detail.html', context)
+
 
 def about(request):
     return render(request, 'pages/about.html')

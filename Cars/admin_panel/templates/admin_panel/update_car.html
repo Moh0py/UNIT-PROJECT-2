@@ -1,44 +1,45 @@
 {% extends 'pages/base.html' %}
-
-{% block title %}Update Car{% endblock %}
-
 {% block content %}
-<h2 class="mb-4 text-center">Edit Car: {{ car.name }}</h2>
+<div class="container py-4">
+  <div class="card mx-auto" style="max-width: 600px;">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">Edit Car: {{ car.name }}</h3>
 
-<div class="d-flex justify-content-center align-items-start flex-wrap">
-  <div class="w-100 w-md-50">
-    <form method="POST" enctype="multipart/form-data" class="w-100">
-      {% csrf_token %}
-      <div class="form-group">
-        <label for="{{ form.name.id_for_label }}">Car Name</label>
-        {{ form.name }}
-      </div>
-      <div class="form-group">
-        <label for="{{ form.model.id_for_label }}">Model</label>
-        {{ form.model }}
-      </div>
-      <div class="form-group">
-        <label for="{{ form.year.id_for_label }}">Year</label>
-        {{ form.year }}
-      </div>
-      <div class="form-group">
-        <label for="{{ form.price.id_for_label }}">Price</label>
-        {{ form.price }}
-      </div>
-      <div class="form-group">
-        <label for="{{ form.image.id_for_label }}">Car Image</label>
-        {{ form.image }}
-      </div>
-      <div class="form-group d-flex justify-content-between">
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-        <a href="{% url 'admin_cars' %}" class="btn btn-secondary">Cancel</a>
-      </div>
-    </form>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+       {% for field in form %}
+  <div class="mb-3">
+    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+    {{ field }}
+    {% if field.help_text %}
+      <div class="form-text">{{ field.help_text }}</div>
+    {% endif %}
+    {% for error in field.errors %}
+      <div class="text-danger small">{{ error }}</div>
+    {% endfor %}
   </div>
-  {% if car.image %}
-  <div class="text-center mb-3 ml-4">
-    <img src="{{ car.image.url }}" alt="{{ car.name }}" style="max-width: 300px;">
+{% endfor %}
+
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <a href="{% url 'admin_cars' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+
+      <div class="mt-4 text-center">
+        {% if car.front_image %}
+          <p>Current Front Image:</p>
+          <img src="{{ car.front_image.url }}" class="img-thumbnail mb-3" alt="" style="max-width:300px;">
+        {% endif %}
+        {% if car.back_image %}
+          <p>Current Back Image:</p>
+          <img src="{{ car.back_image.url }}" class="img-thumbnail" alt="" style="max-width:300px;">
+        {% endif %}
+      </div>
+
+    </div>
   </div>
-  {% endif %}
 </div>
 {% endblock %}

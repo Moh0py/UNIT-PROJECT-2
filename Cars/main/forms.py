@@ -4,12 +4,13 @@ from .models import Car, Review
 class CarForm(forms.ModelForm):
     class Meta:
         model = Car
-        fields = ['name', 'model', 'year', 'price', 'brand', 'image']
-
+        fields = ['name', 'model', 'year', 'price', 'brand', 'description', 'front_image', 'back_image', 'model_3d_url']
         widgets = {
             'year': forms.NumberInput(attrs={'min': 1900, 'max': 2100}),
             'price': forms.NumberInput(attrs={'step': 0.01}),
-            'image': forms.ClearableFileInput(attrs={'accept': 'image/*'}),
+            'front_image': forms.ClearableFileInput(attrs={'accept': 'image/*'}),
+            'back_image': forms.ClearableFileInput(attrs={'accept': 'image/*'}),
+            'model_3d_url': forms.URLInput(attrs={'placeholder': '3D model URL'}),
         }
 
 class ReviewForm(forms.ModelForm):

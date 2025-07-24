@@ -32,7 +32,7 @@
 </div>
 
 <h4 class="mt-5">Leave a Review</h4>
-<form method="POST" action="{% url 'cars:add_review' car.id %}">
+<form method="POST" action="{% url 'cars:car_detail' car.id %}">
   {% csrf_token %}
   <div class="form-group">
     <label for="name">Your Name:</label>

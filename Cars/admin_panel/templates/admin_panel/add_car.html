@@ -1,35 +1,49 @@
 {% extends 'pages/base.html' %}
 
 {% block content %}
-    <h2 class="text-center mt-4 mb-4">Add New Car</h2>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-        <div class="form-group">
-            <label for="{{ form.name.id_for_label }}">Car Name</label>
-            {{ form.name }}
-        </div>
-        
-        <div class="form-group">
-            <label for="{{ form.model.id_for_label }}">Model</label>
-            {{ form.model }}
-        </div>
-        
-        <div class="form-group">
-            <label for="{{ form.year.id_for_label }}">Year</label>
-            {{ form.year }}
-        </div>
-        
-        <div class="form-group">
-            <label for="{{ form.price.id_for_label }}">Price</label>
-            {{ form.price }}
-        </div>
-        
-        <div class="form-group">
-            <label for="{{ form.image.id_for_label }}">Car Image</label>
-            {{ form.image }}
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Save Car</button>
-    </form>
-  {% endblock %}
+  <h2 class="text-center mt-4 mb-4">Add New Car</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="form-group">
+      <label for="{{ form.name.id_for_label }}">Car Name</label>
+      {{ form.name }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.model.id_for_label }}">Model</label>
+      {{ form.model }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.year.id_for_label }}">Year</label>
+      {{ form.year }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.price.id_for_label }}">Price</label>
+      {{ form.price }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.brand.id_for_label }}">Brand</label>
+      {{ form.brand }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.description.id_for_label }}">Description</label>
+      {{ form.description }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.front_image.id_for_label }}">Front Image</label>
+      {{ form.front_image }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.back_image.id_for_label }}">Back Image</label>
+      {{ form.back_image }}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.model_3d_url.id_for_label }}">3D Model URL</label>
+      {{ form.model_3d_url }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Car</button>
+  </form>
+{% endblock %}
