@@ -13,6 +13,31 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 
+import os
+from pathlib import Path
+import firebase_admin
+from firebase_admin import credentials, storage
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+cred_path = os.environ.get(
+    'GOOGLE_APPLICATION_CREDENTIALS',
+    "C:\\Users\\hp\\Downloads\\cars-ad618-firebase-adminsdk-fbsvc-b58263d09c.json"
+)
+
+cred_path = os.environ.get(
+    'GOOGLE_APPLICATION_CREDENTIALS',
+    "C:/Users/hp/Downloads/cars-ad618-firebase-adminsdk-fbsvc-b58263d09c.json"
+)
+
+print("Loading Firebase credentials from:", cred_path) 
+
+cred = credentials.Certificate(cred_path)
+
+firebase_admin.initialize_app(cred, {
+    'storageBucket': 'cars-ad618.appspot.com'
+})
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

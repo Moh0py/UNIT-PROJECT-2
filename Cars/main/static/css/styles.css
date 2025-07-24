@@ -123,8 +123,11 @@ footer a:hover {
 
 footer ul.list-unstyled li {
     padding: 4px 0;
+display: ruby;
+    padding-left: 0;
+    list-style: none;
 }
-
+    
 .wrapper {
     display: flex;
     list-style: none;
@@ -216,6 +219,12 @@ footer ul.list-unstyled li {
 .wrapper .instagram:hover .tooltip,
 .wrapper .instagram:hover .tooltip::before {
     background: #e4405f;
+    color: #fff;
+}
+.wrapper .github:hover,
+.wrapper .github:hover .tooltip,
+.wrapper .github:hover .tooltip::before {
+    background: #070707;
     color: #fff;
 }
 

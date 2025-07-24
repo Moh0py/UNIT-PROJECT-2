@@ -23,15 +23,15 @@ class Car(models.Model):
 
 
 class CarImage(models.Model):
-    car = models.ForeignKey(Car,on_delete=models.CASCADE,related_name='gallery_images')
-    image = models.ImageField(upload_to='img/gallery/')
-    order = models.PositiveIntegerField(default=0,help_text="" )
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="gallery_images")
+    image_url = models.URLField(max_length=500)      
+    order     = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ['order']
 
     def __str__(self):
-        return f"Image #{self.order} for {self.car}"
+        return f"Image for {self.car.name} ({self.order})"
 
 
 class Review(models.Model):
