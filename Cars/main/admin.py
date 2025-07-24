@@ -1,10 +1,14 @@
 from django.contrib import admin
-from .models import Car
+from .models import Car, CarImage
 
 # Register your models here.
 
-@admin.register(Car)
+class CarImageInline(admin.TabularInline):
+    model = CarImage
+    extra = 3 
+    fields = ('order', 'image')
+
+
 class CarAdmin(admin.ModelAdmin):
-    list_display = ('name', 'model', 'year', 'price')
-    search_fields = ('name', 'model')
-    list_filter = ('year',)
+    list_display = ('name', 'model', 'year', 'brand')
+    inlines = [CarImageInline]

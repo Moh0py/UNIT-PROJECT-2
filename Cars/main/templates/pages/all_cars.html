@@ -5,7 +5,7 @@
 {% block content %}
 <h2 class="mb-4 text-center">All Cars</h2>
 
-<form method="GET" action="{% url 'cars:all_cars' %}" class="row mb-4">
+<form method="GET" action="{% url 'cars:all_cars' %}" class="row mb-2">
   <div class="col-md-4">
     <select name="brand" class="form-select">
       <option value="">All Brands</option>
@@ -28,7 +28,7 @@
 
 <div class="row">
   {% for car in page_obj %}
-  <div class="col-md-4 mb-4">
+  <div class="col-md-6 mb-4">
     <div class="card">
       <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.name }}">
       <div class="card-body">
@@ -42,8 +42,7 @@
   {% endfor %}
 </div>
 
-<!-- Pagination controls -->
-<div class="mt-4 text-center">
+<div class="mt-6 text-center">
   <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
       {% if page_obj.has_previous %}

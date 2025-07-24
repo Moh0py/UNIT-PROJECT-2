@@ -44,7 +44,7 @@ def car_detail(request, car_id):
 
 
 def about(request):
-    return render(request, 'pages/about.html')
+    return render(request, 'contact/about.html')
 
 def contact(request):
     return render(request, 'contact/contact.html')
