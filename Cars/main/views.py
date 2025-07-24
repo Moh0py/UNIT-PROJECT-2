@@ -22,12 +22,12 @@ def all_cars(request):
     if max_price:
         cars = cars.filter(price__lte=max_price)
 
-    
     paginator = Paginator(cars, 10)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'cars/all_cars.html', {'page_obj': page_obj})
+    return render(request, 'all_cars.html', {'page_obj': page_obj})
+
 
 def car_detail(request, car_id):
     car = get_object_or_404(Car, pk=car_id)  

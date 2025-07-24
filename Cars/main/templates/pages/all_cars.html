@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+{% extends 'pages/base.html' %}
 
 {% block title %}All Cars - Car Move{% endblock %}
 
@@ -21,13 +21,13 @@
   <div class="col-md-4">
     <input type="number" name="max_price" class="form-control" placeholder="Max Price" value="{{ request.GET.max_price }}">
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4 mt-2">
     <button class="btn btn-dark w-100">Filter</button>
   </div>
 </form>
 
 <div class="row">
-  {% for car in cars %}
+  {% for car in page_obj %}
   <div class="col-md-4 mb-4">
     <div class="card">
       <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.name }}">
@@ -36,35 +36,31 @@
         <p>Price: ${{ car.price }}</p>
         <p><small>{{ car.brand }}</small></p>
         <a href="{% url 'cars:car_detail' car.id %}" class="btn btn-outline-primary btn-sm">View</a>
-        <a href="{% url 'cars:update_car' car.id %}" class="btn btn-outline-secondary btn-sm">Edit</a>
-        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ car.id }}">Delete</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="deleteModal{{ car.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ car.id }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <form method="POST" action="{% url 'cars:delete_car' car.id %}">
-          {% csrf_token %}
-          <div class="modal-header">
-            <h5 class="modal-title" id="deleteModalLabel{{ car.id }}">Confirm Deletion</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-center">
-            <p>Are you sure you want to delete <strong>{{ car.name }} - {{ car.model }}</strong>?</p>
-            {% if car.image %}
-              <img src="{{ car.image.url }}" alt="{{ car.name }}" class="img-fluid" style="max-width: 200px;">
-            {% endif %}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </div>
-        </form>
       </div>
     </div>
   </div>
   {% endfor %}
 </div>
+
+<!-- Pagination controls -->
+<div class="mt-4 text-center">
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?{% if request.GET.brand %}brand={{ request.GET.brand }}&{% endif %}{% if request.GET.min_price %}min_price={{ request.GET.min_price }}&{% endif %}{% if request.GET.max_price %}max_price={{ request.GET.max_price }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+      {% endif %}
+
+      <li class="page-item active"><span class="page-link">{{ page_obj.number }}</span></li>
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?{% if request.GET.brand %}brand={{ request.GET.brand }}&{% endif %}{% if request.GET.min_price %}min_price={{ request.GET.min_price }}&{% endif %}{% if request.GET.max_price %}max_price={{ request.GET.max_price }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+
 {% endblock %}

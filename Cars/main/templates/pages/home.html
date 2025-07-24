@@ -2,6 +2,43 @@
 {% load static %}
 
 {% block content %}
+
+<!-- Carousel -->
+<div id="carCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'img/car-1.jpg' %}" class="d-block w-100" style="height:400px; object-fit: cover;" alt="Car 1">
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+        <h5>Car Model 1</h5>
+        <p>Description for car 1</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/f2.gif' %}" class="d-block w-100" style="height:400px; object-fit: cover;" alt="Car 2">
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+        <h5>Car Model 2</h5>
+        <p>Description for car 2</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/car-3.jpg' %}" class="d-block w-100" style="height:400px; object-fit: cover;" alt="Car 3">
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+        <h5>Car Model 3</h5>
+        <p>Description for car 3</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Existing cars section -->
 <section class="container my-5" id="cars">
   <h2 class="text-center mb-4" style="color:#F2AA4C;">Our Cars</h2>
   <div class="row g-4 justify-content-center">
@@ -27,4 +64,5 @@
     {% endfor %}
   </div>
 </section>
+
 {% endblock %}
