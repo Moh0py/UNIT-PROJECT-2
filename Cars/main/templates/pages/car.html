@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+
+{% block title %}All Cars - Car Move{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-center">All Cars</h2>
+
+<form method="GET" action="{% url 'cars:all_cars' %}" class="row mb-4">
+  <div class="col-md-4">
+    <select name="brand" class="form-select">
+      <option value="">All Brands</option>
+      <option value="Toyota" {% if request.GET.brand == "Toyota" %}selected{% endif %}>Toyota</option>
+      <option value="Ford" {% if request.GET.brand == "Ford" %}selected{% endif %}>Ford</option>
+      <option value="BMW" {% if request.GET.brand == "BMW" %}selected{% endif %}>BMW</option>
+      <option value="Mercedes" {% if request.GET.brand == "Mercedes" %}selected{% endif %}>Mercedes</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <input type="number" name="min_price" class="form-control" placeholder="Min Price" value="{{ request.GET.min_price }}">
+  </div>
+  <div class="col-md-4">
+    <input type="number" name="max_price" class="form-control" placeholder="Max Price" value="{{ request.GET.max_price }}">
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-dark w-100">Filter</button>
+  </div>
+</form>
+
+<div class="row">
+  {% for car in cars %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.name }}">
+      <div class="card-body">
+        <h5>{{ car.name }} - {{ car.model }} ({{ car.year }})</h5>
+        <p>Price: ${{ car.price }}</p>
+        <p><small>{{ car.brand }}</small></p>
+        <a href="{% url 'cars:car_detail' car.id %}" class="btn btn-outline-primary btn-sm">View</a>
+        <a href="{% url 'cars:update_car' car.id %}" class="btn btn-outline-secondary btn-sm">Edit</a>
+        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ car.id }}">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteModal{{ car.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ car.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form method="POST" action="{% url 'cars:delete_car' car.id %}">
+          {% csrf_token %}
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel{{ car.id }}">Confirm Deletion</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p>Are you sure you want to delete <strong>{{ car.name }} - {{ car.model }}</strong>?</p>
+            {% if car.image %}
+              <img src="{{ car.image.url }}" alt="{{ car.name }}" class="img-fluid" style="max-width: 200px;">
+            {% endif %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
