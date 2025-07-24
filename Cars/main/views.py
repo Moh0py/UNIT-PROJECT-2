@@ -1,16 +1,37 @@
-from django.shortcuts import render , redirect
-from .models import Car
-from django.conf import settings
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import Http404
+from django.core.paginator import Paginator
+from .models import Car, Review
+from .forms import CarForm, ReviewForm, CarFilterForm
 
-# Create your views here.
 def home_view(request):
-    cars = Car.objects.all()
+    cars = Car.objects.all()[:10]  
     return render(request, 'pages/home.html', {'cars': cars})
 
-
-def car_list(request):
+def all_cars(request):
     cars = Car.objects.all()
-    return render(request, 'pages/car_list.html', {'cars': cars})
+
+    brand = request.GET.get('brand')
+    if brand:
+        cars = cars.filter(brand=brand)
+
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+    if min_price:
+        cars = cars.filter(price__gte=min_price)
+    if max_price:
+        cars = cars.filter(price__lte=max_price)
+
+    paginator = Paginator(cars, 10)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'all_cars.html', {'page_obj': page_obj})
+
+
+def car_detail(request, car_id):
+    car = get_object_or_404(Car, pk=car_id)  
+    return render(request, 'pages/car.html', {'car': car}) 
 
 def about(request):
     return render(request, 'pages/about.html')
@@ -18,6 +39,27 @@ def about(request):
 def contact(request):
     return render(request, 'contact/contact.html')
 
-def car_details(request,car_id):
-    car = Car.objects.all(Car, pk=car_id)
-    return render(request,'pages/deatils.html',{'car':car})
+def search_car(request):
+    query = request.GET.get('q', '')
+    if query:
+        results = Car.objects.filter(name__icontains=query)
+    else:
+        results = Car.objects.all()
+
+    return render(request, 'cars/search.html', {'results': results, 'query': query})
+
+def add_review(request, car_id):
+    car = get_object_or_404(Car, pk=car_id)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.car = car
+            review.save()
+            return redirect('cars:car_detail', car_id=car.id)
+    else:
+        form = ReviewForm()
+
+    return render(request, 'cars/add_review.html', {'form': form, 'car': car})
+

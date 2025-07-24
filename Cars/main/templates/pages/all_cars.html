@@ -1,0 +1,66 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}All Cars - Car Move{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-center">All Cars</h2>
+
+<form method="GET" action="{% url 'cars:all_cars' %}" class="row mb-4">
+  <div class="col-md-4">
+    <select name="brand" class="form-select">
+      <option value="">All Brands</option>
+      <option value="Toyota" {% if request.GET.brand == "Toyota" %}selected{% endif %}>Toyota</option>
+      <option value="Ford" {% if request.GET.brand == "Ford" %}selected{% endif %}>Ford</option>
+      <option value="BMW" {% if request.GET.brand == "BMW" %}selected{% endif %}>BMW</option>
+      <option value="Mercedes" {% if request.GET.brand == "Mercedes" %}selected{% endif %}>Mercedes</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <input type="number" name="min_price" class="form-control" placeholder="Min Price" value="{{ request.GET.min_price }}">
+  </div>
+  <div class="col-md-4">
+    <input type="number" name="max_price" class="form-control" placeholder="Max Price" value="{{ request.GET.max_price }}">
+  </div>
+  <div class="col-md-4 mt-2">
+    <button class="btn btn-dark w-100">Filter</button>
+  </div>
+</form>
+
+<div class="row">
+  {% for car in page_obj %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.name }}">
+      <div class="card-body">
+        <h5>{{ car.name }} - {{ car.model }} ({{ car.year }})</h5>
+        <p>Price: ${{ car.price }}</p>
+        <p><small>{{ car.brand }}</small></p>
+        <a href="{% url 'cars:car_detail' car.id %}" class="btn btn-outline-primary btn-sm">View</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Pagination controls -->
+<div class="mt-4 text-center">
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?{% if request.GET.brand %}brand={{ request.GET.brand }}&{% endif %}{% if request.GET.min_price %}min_price={{ request.GET.min_price }}&{% endif %}{% if request.GET.max_price %}max_price={{ request.GET.max_price }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+      {% endif %}
+
+      <li class="page-item active"><span class="page-link">{{ page_obj.number }}</span></li>
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?{% if request.GET.brand %}brand={{ request.GET.brand }}&{% endif %}{% if request.GET.min_price %}min_price={{ request.GET.min_price }}&{% endif %}{% if request.GET.max_price %}max_price={{ request.GET.max_price }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+
+{% endblock %}
