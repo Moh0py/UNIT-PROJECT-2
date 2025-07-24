@@ -35,4 +35,18 @@
       </div>
     </div>
   </div>
+  
+<!-- Display Reviews -->
+<h4 class="mt-4">Reviews:</h4>
+{% for review in cars.reviews.all %}
+  <div class="mt-3">
+    <h5>{{ review.name }}</h5>
+    <p>{{ review.comment }}</p>
+    <small>Reviewed on: {{ review.created_at|date:"Y-m-d H:i" }}</small>
+  </div>
+{% empty %}
+  <p>No reviews yet. Be the first to review this car!</p>
+{% endfor %}
+
 {% endblock %}
+
