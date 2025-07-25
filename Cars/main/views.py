@@ -58,18 +58,12 @@ def search_car(request):
 
     return render(request, 'cars/search.html', {'results': results, 'query': query})
 
+
 def add_review(request, car_id):
-    car = get_object_or_404(Car, pk=car_id)
 
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.car = car
-            review.save()
-            return redirect('cars:car_detail', car_id=car.id)
-    else:
-        form = ReviewForm()
-
-    return render(request, 'cars/add_review.html', {'form': form, 'car': car})
+ if request.method == 'POST':
+      car = Car.objects.get(pk=car_id)
+      review_text = Review(car=car, name=request.POST.get('name'), comment=request.POST.get('comment'))
+      review_text.save()
+      return redirect('car_detail', car_id=car.id)
 

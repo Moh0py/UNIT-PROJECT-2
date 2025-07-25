@@ -13,7 +13,7 @@
     <button type="submit" class="btn btn-danger fw-bold" onclick="return confirm('Are you sure you want to delete this car?')">
       Delete Car
     </button>
-    <a href="{% url 'admin_cars' %}" class="btn btn-secondary ms-3">Cancel</a>
+    <a href="{% url 'admin_panel:admin_cars' %}" class="btn btn-secondary ms-3">Cancel</a>
   </div>
 </form>
 {% endblock %}
