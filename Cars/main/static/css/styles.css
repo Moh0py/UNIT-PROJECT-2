@@ -229,9 +229,8 @@ display: ruby;
 }
 
 form {
-    width: 80%;
+    width: 40%;
     margin: 0 auto;
-    padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -382,3 +381,20 @@ button.btn, .btn {
         max-width: 90%;
     }
 }
+/* .card .btn {
+    background-color: var(--main-gold);
+    color: var(--main-dark);
+    padding: 12px 25px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+
+.card .btn:hover {
+    background-color: var(--main-dark);
+    color: var(--main-light);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+} */

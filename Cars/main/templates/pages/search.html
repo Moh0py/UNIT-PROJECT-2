@@ -1,0 +1,33 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<h2>Search Results</h2>
+
+<form method="GET" action="{% url 'cars:search' %}" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="q" value="{{ request.GET.q }}" class="form-control form-control-sm" placeholder="Search...">
+    <button class="btn btn-outline-secondary btn-sm" type="submit">Search</button>
+  </div>
+</form>
+
+
+<div class="row">
+  {% for car in results %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <img src="{{ car.front_image.url }}" class="card-img-top" alt="{{ car.name }}" style="height: 180px; position: relative; object-fit: cover;">
+      <div class="card-body">
+        <a href="{% url 'cars:car_detail' car.id %}" class="card-title h5 d-block">{{ car.name }}</a>
+        <p>{{ car.description|truncatechars:50 }}</p>
+        <p><small>{{ car.brand }}</small></p>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <p>No results found.</p>
+  {% endfor %}
+</div>
+
+{% endblock %}

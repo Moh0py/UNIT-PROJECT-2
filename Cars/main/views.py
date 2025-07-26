@@ -50,15 +50,19 @@ def about(request):
 def contact(request):
     return render(request, 'contact/contact.html')
 
-def search_car(request):
+def search_view(request):
     query = request.GET.get('q', '')
-    results = Car.objects.filter(name__icontains=query) if query else Car.objects.all()
-    return render(request, 'cars/search.html', {'results': results, 'query': query})
+    if query:
+        results = Car.objects.filter(name__icontains=query)  
+    else:
+        results = Car.objects.none() 
+
+    return render(request, 'pages/search.html', {'results': results, 'query': query})
 
 def add_review(request, car_id):
     if request.method == 'POST':
      car = Car.objects.get(pk=car_id)
     review_text = Review(car=car, name=request.POST.get('name'), comment=request.POST.get('comment'))
     review_text.save()
-    return redirect('car_detail', car_id=car.id) 
+    return redirect('cars:car_detail', car_id=car_id)
     
