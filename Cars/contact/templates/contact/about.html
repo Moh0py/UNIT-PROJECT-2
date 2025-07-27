@@ -1,6 +1,7 @@
 {% extends 'pages/base.html' %}
 {% load static %}
 
+
 {% block content %}
 
 <style>
@@ -120,7 +121,7 @@
         </div>
       </div>
       <div class="col-lg-6">
-        <img src="{% static 'img/about-image.jpg' %}" alt="Car Move Team" class="img-fluid rounded shadow-lg">
+        <img src="{% static 'img/pexels-thisisengineering-3862627.jpg' %}" alt="Car Move Team" class="img-fluid rounded shadow-lg">
       </div>
     </div>
   </section>
@@ -200,76 +201,4 @@
       </div>
     </div>
   </section>
-  <section class="mb-5">
-    <div class="row">
-      <div class="col-lg-8 mx-auto">
-        <div class="card border-0 shadow-lg rounded-3">
-          <div class="card-header bg-primary text-white text-center py-4">
-            <h4 class="mb-0"><i class="fas fa-envelope me-2"></i>Send us your feedback</h4>
-            <p class="mb-0 mt-2 opacity-75">We'd love to hear from you</p>
-          </div>
-          <div class="card-body p-5">
-            <form method="POST" action="">
-              {% csrf_token %}
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="name" class="form-label fw-bold">
-                    <i class="fas fa-user me-2 text-primary"></i>Your Name
-                  </label>
-                  <input type="text" name="name" id="name" class="form-control form-control-lg" required>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                  <label for="email" class="form-label fw-bold">
-                    <i class="fas fa-envelope me-2 text-primary"></i>Email Address
-                  </label>
-                  <input type="email" name="email" id="email" class="form-control form-control-lg" required>
-                </div>
-              </div>
-
-              <div class="mb-4">
-                <label for="message" class="form-label fw-bold">
-                  <i class="fas fa-comment me-2 text-primary"></i>Message
-                </label>
-                <textarea name="message" id="message" rows="6" class="form-control form-control-lg" placeholder="Tell us how we can help you..." required></textarea>
-              </div>
-
-              <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">
-                  <i class="fas fa-paper-plane me-2"></i>Submit
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="mb-5">
-    <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="contact-info-card text-center p-4 rounded">
-          <i class="fas fa-map-marker-alt fa-3x text-primary mb-3"></i>
-          <h5>Visit Us</h5>
-          <p class="mb-0">King Fahd Road, Riyadh<br>Saudi Arabia, 12345</p>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="contact-info-card text-center p-4 rounded">
-          <i class="fas fa-phone fa-3x text-primary mb-3"></i>
-          <h5>Call Us</h5>
-          <p class="mb-0">+966 11 123 4567<br>Available 24/7</p>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="contact-info-card text-center p-4 rounded">
-          <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
-          <h5>Email Us</h5>
-          <p class="mb-0">info@carmove.sa<br>support@carmove.sa</p>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-</section>
 {% endblock %}

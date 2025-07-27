@@ -3,6 +3,7 @@ from . import views
 
 
 app_name='admin_panel'
+
 urlpatterns = [
     path('cars/', views.admin_cars, name='admin_cars'),
     path('cars/add/', views.add_car, name='add_car'),

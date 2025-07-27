@@ -1,0 +1,170 @@
+{% extends 'pages/base.html' %}
+{% block title %}Messages From Users{% endblock %}
+
+{% block content %}
+<style>
+:root {
+  --primary-color: #F2AA4C;
+  --secondary-color: #101820;
+}
+
+.messages-header {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, rgba(16, 24, 32, 0.9) 100%);
+  color: white;
+  padding: 60px 0;
+  margin-bottom: 3rem;
+}
+
+.message-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-left: 5px solid var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.message-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(242, 170, 76, 0.2);
+}
+
+.message-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.sender-info h5 {
+  color: var(--secondary-color);
+  margin-bottom: 0.25rem;
+}
+
+.sender-info small {
+  color: #6c757d;
+}
+
+.message-date {
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.message-content {
+  color: #495057;
+  line-height: 1.6;
+}
+
+.stats-box {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #e09a3a 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.stats-box h3 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.no-messages {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #f8f9fa;
+  border-radius: 15px;
+}
+
+.no-messages i {
+  font-size: 4rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.filters {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+</style>
+
+<div class="messages-header">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <h1 class="display-4 fw-bold mb-3">User Messages</h1>
+        <p class="lead mb-0">All feedback and inquiries from our valued customers</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a href="{% url 'contact_us' %}" class="btn btn-light btn-lg mt-3 mt-lg-0">
+          <i class="fas fa-arrow-left me-2"></i>Back to Contact
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-4" role="alert">
+        <i class="fas {% if message.tags == 'success' %}fa-check-circle{% else %}fa-exclamation-triangle{% endif %} me-2"></i>
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="stats-box">
+    <i class="fas fa-envelope mb-3" style="font-size: 3rem;"></i>
+    <h3>{{ total_messages }}</h3>
+    <p class="mb-0">Total Messages Received</p>
+  </div>
+  {% if messages %}
+    <div class="row">
+      <div class="col-12">
+        <h3 class="mb-4">All Messages</h3>
+        
+        {% for msg in messages %}
+          <div class="message-card">
+            <div class="message-meta">
+              <div class="sender-info">
+                <h5>
+                  <i class="fas fa-user me-2" style="color: var(--primary-color);"></i>
+                  {{ msg.name }}
+                </h5>
+                <small>
+                  <i class="fas fa-envelope me-1"></i>
+                  {{ msg.email }}
+                </small>
+              </div>
+              <div class="message-date">
+                <i class="fas fa-clock me-1"></i>
+                {{ msg.created_at|date:"F d, Y - h:i A" }}
+              </div>
+            </div>
+            <div class="message-content">
+              <p class="mb-0">{{ msg.message|linebreaks }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <div class="no-messages">
+      <i class="fas fa-inbox"></i>
+      <h3>No Messages Yet</h3>
+      <p class="text-muted">When users send feedback through the contact form, their messages will appear here.</p>
+      <a href="{% url 'contact_us' %}" class="btn btn-primary mt-3">
+        <i class="fas fa-envelope me-2"></i>Go to Contact Page
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

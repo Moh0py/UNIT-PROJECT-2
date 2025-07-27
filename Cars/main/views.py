@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import Http404, HttpRequest
 from django.core.paginator import Paginator
 from .models import Car, Review
+from contact import views as contact_views
 from .forms import CarForm, ReviewForm, CarFilterForm
 
 def home_view(request):
@@ -47,8 +48,7 @@ def car_detail(request, car_id):
 def about(request):
     return render(request, 'contact/about.html')
 
-def contact(request):
-    return render(request, 'contact/contact.html')
+
 
 def search_view(request):
     query = request.GET.get('q', '')
