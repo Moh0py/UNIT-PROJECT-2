@@ -3,111 +3,277 @@
 
 {% block content %}
 
-  <!-- Carousel -->
-  <div id="carCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{% static 'img/car-1.jpg' %}" class="d-block w-100" style="height:400px; object-fit: cover;" alt="Car 1">
-        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
-          <h5>Car Model 1</h5>
-          <p>Description for car 1</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'img/f2.gif' %}" class="d-block w-100" style="height:400px; object-fit: cover;" alt="Car 2">
-        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
-          <h5>Car Model 2</h5>
-          <p>Description for car 2</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'img/car-3.jpg' %}" class="d-block w-100" style="height:400px; object-fit: cover;" alt="Car 3">
-        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
-          <h5>Car Model 3</h5>
-          <p>Description for car 3</p>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  <section class="services-section py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-5" style="color:#F2AA4C;">Our Services</h2>
-    <div class="row g-4">
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
-          <i class="bi bi-car-front fs-1 mb-3 text-primary"></i>
-          <h5 class="card-title mb-2">Sell Your Car</h5>
-          <p class="card-text text-muted mb-3">
-            Quickly sell your car at the best price through our platform.
-          </p>
-          <a href="#" class="stretched-link text-dark fw-bold">Learn More</a>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
-          <i class="bi bi-cash-stack fs-1 mb-3 text-success"></i>
-          <h5 class="card-title mb-2">Financing Options</h5>
-          <p class="card-text text-muted mb-3">
-            Flexible financing plans tailored to your budget.
-          </p>
-          <a href="#" class="stretched-link text-dark fw-bold">Learn More</a>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
-          <i class="bi bi-calendar-check fs-1 mb-3 text-warning"></i>
-          <h5 class="card-title mb-2">Book a Test Drive</h5>
-          <p class="card-text text-muted mb-3">
-            Schedule a free test drive at your convenience.
-          </p>
-          <a href="#" class="stretched-link text-dark fw-bold">Learn More</a>
-        </div>
-      </div>
-      <div class="col-12 col-sm-6 col-lg-3">
-        <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
-          <i class="bi bi-tools fs-1 mb-3 text-danger"></i>
-          <h5 class="card-title mb-2">Maintenance & Support</h5>
-          <p class="card-text text-muted mb-3">
-            Expert maintenance and repair services you can trust.
-          </p>
-          <a href="#" class="stretched-link text-dark fw-bold">Learn More</a>
-        </div>
-      </div>
+  <!-- Hero Video Section -->
+  <div class="hero-video-section position-relative overflow-hidden" style="height: 100vh; min-height: 600px;">
+    <video 
+      autoplay 
+      muted 
+      loop 
+      playsinline
+      class="position-absolute top-0 start-0 w-100 h-100" 
+      style="object-fit: cover; z-index: -1;">
+      <source src="{% static 'img/A true reflection of luxury. The new BMW 8 Series..mp4' %}" type="video/mp4">
+      
+    </video>
+    
+    
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%); z-index: 0;"></div>
+          </div>
+    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4 text-white animate-bounce">
+      <i class="bi bi-chevron-double-down fs-2"></i>
     </div>
   </div>
-</section>
-  <section id="cars" class="container my-5">
-    <h2 class="text-center mb-4" style="color:#F2AA4C;">Our Cars</h2>
-    <div class="row g-4 justify-content-center">
-      {% for car in cars %}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="card h-100 shadow-sm border-0">
-            {% if car.front_image %}
-              <img src="{{ car.front_image.url }}" class="card-img-top" style="height:180px; object-fit:cover;" alt="{{ car.name }}">
-            {% else %}
-              <img src="{% static 'img/car-10.jpg' %}" class="card-img-top" style="height:180px; object-fit:cover;" alt="{{ car.name }}">
-            {% endif %}
-            <div class="card-body text-center p-3">
-              <h6 class="mb-1">{{ car.name }} {{ car.model }}</h6>
-              <small class="text-muted">{{ car.year }} — ${{ car.price }}</small><br>
-              <a href="{% url 'cars:car_detail' car.id %}" class="btn btn-sm btn-outline-primary mt-2">View</a>
+
+  <!-- Services Section -->
+  <section id="services" class="services-section py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-4 fw-bold mb-3" style="color:#F2AA4C;">Our Services</h2>
+        <p class="lead text-muted">Comprehensive solutions for all your automotive needs</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
+            <div class="icon-wrapper mb-4">
+              <i class="bi bi-car-front fs-1 text-primary"></i>
             </div>
+            <h5 class="card-title mb-3">Sell Your Car</h5>
+            <p class="card-text text-muted mb-4">
+              Get the best market value for your vehicle with our hassle-free selling process.
+            </p>
+            <a href="#" class="btn btn-outline-primary btn-sm">Learn More →</a>
           </div>
         </div>
-      {% empty %}
-        <div class="col-12">
-          <div class="alert alert-info text-center">No cars available at the moment.</div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
+            <div class="icon-wrapper mb-4">
+              <i class="bi bi-cash-stack fs-1 text-success"></i>
+            </div>
+            <h5 class="card-title mb-3">Smart Financing</h5>
+            <p class="card-text text-muted mb-4">
+              Flexible payment plans tailored to fit your budget and lifestyle.
+            </p>
+            <a href="#" class="btn btn-outline-success btn-sm">Learn More →</a>
+          </div>
         </div>
-      {% endfor %}
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
+            <div class="icon-wrapper mb-4">
+              <i class="bi bi-calendar-check fs-1 text-warning"></i>
+            </div>
+            <h5 class="card-title mb-3">Test Drive</h5>
+            <p class="card-text text-muted mb-4">
+              Experience your dream car with a personalized test drive appointment.
+            </p>
+            <a href="#" class="btn btn-outline-warning btn-sm">Learn More →</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
+            <div class="icon-wrapper mb-4">
+              <i class="bi bi-tools fs-1 text-danger"></i>
+            </div>
+            <h5 class="card-title mb-3">Expert Service</h5>
+            <p class="card-text text-muted mb-4">
+              Professional maintenance by certified technicians using genuine parts.
+            </p>
+            <a href="#" class="btn btn-outline-danger btn-sm">Learn More →</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- Cars Collection Section -->
+  <section id="cars" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-4 fw-bold mb-3" style="color:#F2AA4C;">Featured Collection</h2>
+        <p class="lead text-muted">Handpicked vehicles for the discerning enthusiast</p>
+      </div>
+      <div class="row g-4">
+        {% for car in cars %}
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 car-card">
+              <div class="position-relative overflow-hidden">
+                {% if car.front_image %}
+                  <img src="{{ car.front_image.url }}" class="card-img-top car-image" alt="{{ car.name }}">
+                {% else %}
+                  <img src="{% static 'img/car-10.jpg' %}" class="card-img-top car-image" alt="{{ car.name }}">
+                {% endif %}
+                <div class="car-overlay">
+                  <a href="{% url 'cars:car_detail' car.id %}" class="btn btn-light btn-sm">View Details</a>
+                </div>
+              </div>
+              <div class="card-body text-center">
+                <h6 class="card-title mb-1 fw-bold">{{ car.name }} {{ car.model }}</h6>
+                <p class="text-muted small mb-2">{{ car.year }}</p>
+                <h5 class="text-primary fw-bold mb-3">${{ car.price }}</h5>
+                <a href="{% url 'cars:car_detail' car.id %}" class="btn btn-outline-primary btn-sm w-100">Explore</a>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <div class="col-12">
+            <div class="alert alert-info text-center">
+              <i class="bi bi-info-circle me-2"></i>
+              New inventory coming soon. Please check back later.
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  .animate-fade-in-delay {
+    animation: fadeInUp 1s ease-out 0.3s both;
+  }
+  
+  .animate-fade-in-delay-2 {
+    animation: fadeInUp 1s ease-out 0.6s both;
+  }
+  
+  .animate-bounce {
+    animation: bounce 2s infinite;
+  }
+  
+  /* Service Cards */
+  .service-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15) !important;
+  }
+  
+  .service-card .icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .service-card:hover .icon-wrapper {
+    background-color: #e9ecef;
+    transform: scale(1.1);
+  }
+  
+  /* Car Cards */
+  .car-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .car-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+  }
+  
+  .car-image {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .car-card:hover .car-image {
+    transform: scale(1.1);
+  }
+  
+  .car-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .car-card:hover .car-overlay {
+    opacity: 1;
+  }
+  
+  /* Buttons */
+  .btn {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary {
+    background-color: #F2AA4C;
+    border-color: #F2AA4C;
+  }
+  
+  .btn-primary:hover {
+    background-color: #e09a3c;
+    border-color: #e09a3c;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(242, 170, 76, 0.3);
+  }
+  
+  .btn-outline-light:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .hero-video-section {
+      height: 70vh;
+    }
+    
+    .display-2 {
+      font-size: 2.5rem;
+    }
+    
+    .lead {
+      font-size: 1.1rem;
+    }
+  }
+</style>
 {% endblock %}
