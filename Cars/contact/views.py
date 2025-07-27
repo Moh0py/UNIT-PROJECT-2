@@ -3,7 +3,7 @@ from django.contrib import messages
 from .forms import ContactMessageForm
 from .models import ContactMessage
 
-def contact_us(request):  # تغيير اسم الدالة ليطابق urls.py
+def contact_us(request):  
     print(f"Request method: {request.method}")
     
     if request.method == 'POST':
@@ -40,11 +40,11 @@ def contact_us(request):  # تغيير اسم الدالة ليطابق urls.py
     
     form = ContactMessageForm()
     print("Rendering contact.html template")
-    return render(request, 'contact/contact.html', {'form': form})  # تصحيح: contact.html وليس contact_messages.html
+    return render(request, 'contact/contact.html', {'form': form})  
 
 def messages_from_users(request):
     print("messages_from_users view called")
-    contact_messages = ContactMessage.objects.all().order_by('-created_at')  # تصحيح: ContactMessage بدلاً من Contactmessage
+    contact_messages = ContactMessage.objects.all().order_by('-created_at')  
     print(f"Found {contact_messages.count()} messages in database")
     
     context = {

@@ -11,7 +11,9 @@
 }
 
 .hero-section {
-  background: linear-gradient(135deg, var(--secondary-color) 0%, rgba(16, 24, 32, 0.9) 100%);
+
+  background-size: cover;
+  background-position: center;
   color: white;
   padding: 80px 0;
   margin-bottom: 0;
@@ -66,16 +68,18 @@
 }
 
 .form-control-custom {
-  border: 2px solid #e9ecef;
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 16px;
-  transition: all 0.3s ease;
+  border: 2px solid #e9ecef !important;
+  border-radius: 10px !important;
+  padding: 12px 16px !important;
+  font-size: 16px !important;
+  transition: all 0.3s ease !important;
+  background-color: white !important;
 }
 
 .form-control-custom:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.2rem rgba(242, 170, 76, 0.25);
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 0.2rem rgba(242, 170, 76, 0.25) !important;
+  outline: none !important;
 }
 
 .btn-submit {
@@ -332,8 +336,6 @@
     </div>
   </div>
 </div>
-
-<!-- Contact Information Section -->
 <div class="contact-info">
   <div class="container">
     <div class="row">
@@ -404,18 +406,13 @@
   </div>
 </div>
 
-<!-- Map Section -->
 <section class="py-5">
   <div class="container">
     <div class="row" id="map-section">
       <div class="col-12">
         <h2 class="section-title text-center">Find Us Here</h2>
         <div class="map-container">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3627.021736815863!2d46.52495037153455!3d24.622935700000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f1f507d858eef%3A0xe88c1dbfb81a8f8e!2zUkRMQzgwNjEsIDgwNjEgQWwgTWFuZGFxLCA0NDQ02Iwg2LnZh9ix2Kkg2YTYqNmG2Iwg2KfZhNix2YrYp9i2IDEzNzg3!5e0!3m2!1sar!2ssa!4v1753353061405!5m2!1sar!2ssa" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3627.021736815863!2d46.52495037153455!3d24.622935700000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f1f507d858eef%3A0xe88c1dbfb81a8f8e!2zUkRMQzgwNjEsIDgwNjEgQWwgTWFuZGFxLCA0NDQ02Iwg2LnZh9ix2Kkg2YTYqNmG2Iwg2KfZhNix2YrYp9i2IDEzNzg3!5e0!3m2!1sar!2ssa!4v1753353061405!5m2!1sar!2ssa" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
       </div>
