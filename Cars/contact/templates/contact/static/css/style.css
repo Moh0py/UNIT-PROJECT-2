@@ -1,0 +1,77 @@
+
+:root {
+  --primary-color: #F2AA4C;
+  --secondary-color: #101820;
+  --primary-rgb: 242, 170, 76;
+  --secondary-rgb: 16, 24, 32;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #e09a3a;
+  border-color: #e09a3a;
+  color: var(--secondary-color);
+}
+
+.card-header.bg-primary {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.testimonials-section {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, rgba(16, 24, 32, 0.9) 100%);
+}
+
+.stats-card {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #e09a3a 100%);
+  color: var(--secondary-color);
+  border: none !important;
+}
+
+.stats-card h3 {
+  color: var(--secondary-color) !important;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(242, 170, 76, 0.2) !important;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(242, 170, 76, 0.2) !important;
+}
+
+.contact-info-card {
+  border: 2px solid var(--primary-color) !important;
+  transition: all 0.3s ease;
+}
+
+.contact-info-card:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.contact-info-card:hover i {
+  color: var(--secondary-color) !important;
+}

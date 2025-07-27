@@ -4,15 +4,18 @@ from .models import ContactMessage
 
 def about(request):
     if request.method == 'POST':
-        form = ContactMessageForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('messages_from_users')
-    else:
-        form = ContactMessageForm()
-
-    return render(request, 'contact/about.html', {'form': form})
-
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        
+        ContactMessage.objects.create(
+            name=name,
+            email=email,
+            message=message
+        )
+        return redirect('messages_from_users')
+    
+    return render(request, 'contact/about.html')
 
 def messages_from_users(request):
     messages = ContactMessage.objects.all()

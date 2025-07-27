@@ -3,35 +3,273 @@
 
 {% block content %}
 
-<div style="background-image: url('{% static 'img/f1.jpg' %}'); background-size: cover; background-position: center; height: 300px;" class="mb-5 d-flex align-items-center justify-content-center">
-  <h1 class="text-white text-center bg-dark bg-opacity-50 px-4 py-2 rounded">About Us</h1>
-</div>
+<style>
+  :root {
+  --primary-color: #F2AA4C;
+  --secondary-color: #101820;
+  --primary-rgb: 242, 170, 76;
+  --secondary-rgb: 16, 24, 32;
+}
 
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #e09a3a;
+  border-color: #e09a3a;
+  color: var(--secondary-color);
+}
+
+.card-header.bg-primary {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.testimonials-section {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, rgba(16, 24, 32, 0.9) 100%);
+}
+
+.stats-card {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #e09a3a 100%);
+  color: var(--secondary-color);
+  border: none !important;
+}
+
+.stats-card h3 {
+  color: var(--secondary-color) !important;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(242, 170, 76, 0.2) !important;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(242, 170, 76, 0.2) !important;
+}
+
+.contact-info-card {
+  border: 2px solid var(--primary-color) !important;
+  transition: all 0.3s ease;
+}
+
+.contact-info-card:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.contact-info-card:hover i {
+  color: var(--secondary-color) !important;
+}
+</style>
+<div style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{% static 'img/f1.jpg' %}'); background-size: cover; background-position: center; height: 400px;" class="mb-5 d-flex align-items-center justify-content-center">
+  <div class="text-center text-white">
+    <h1 class="display-4 fw-bold mb-3">About Car Move</h1>
+    <p class="lead">Your Journey Starts Here</p>
+  </div>
+</div>
 <div class="container">
-  <p class="text-center mb-5">
-    Welcome to Car Move – your trusted platform for finding the best cars at the best prices.
-  </p>
-
-  <h4 class="mb-3">Send us your feedback</h4>
-  <form method="POST" action="">
-    {% csrf_token %}
-    <div class="mb-3">
-      <label for="name" class="form-label">Your Name</label>
-      <input type="text" name="name" id="name" class="form-control" required>
+  <section class="mb-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h2 class="mb-4 text-primary">Who We Are</h2>
+        <p class="lead mb-4">
+          Welcome to Car Move – your trusted platform for finding the best cars at the best prices.
+        </p>
+        <p class="mb-4">
+          Founded with a passion for connecting car enthusiasts with their perfect vehicle, we've built a comprehensive platform that makes car buying and selling simple, transparent, and reliable.
+        </p>
+        <div class="row text-center">
+          <div class="col-4">
+            <div class="stats-card rounded p-3 h-100">
+              <h3 class="mb-2">1000+</h3>
+              <small>Cars Listed</small>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stats-card rounded p-3 h-100">
+              <h3 class="mb-2">500+</h3>
+              <small>Happy Customers</small>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="stats-card rounded p-3 h-100">
+              <h3 class="mb-2">5+</h3>
+              <small>Years Experience</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img src="{% static 'img/about-image.jpg' %}" alt="Car Move Team" class="img-fluid rounded shadow-lg">
+      </div>
     </div>
-
-    <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
-      <input type="email" name="email" id="email" class="form-control" required>
+  </section>
+  <section class="mb-5 bg-light py-5 px-4 rounded">
+    <div class="row">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="text-center">
+          <i class="fas fa-bullseye fa-3x text-primary mb-3"></i>
+          <h3 class="mb-3">Our Mission</h3>
+          <p>To revolutionize the car buying experience by providing a transparent, user-friendly platform that connects buyers and sellers with confidence and ease.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="text-center">
+          <i class="fas fa-eye fa-3x text-primary mb-3"></i>
+          <h3 class="mb-3">Our Vision</h3>
+          <p>To become the leading automotive marketplace in the region, known for innovation, trust, and exceptional customer service.</p>
+        </div>
+      </div>
     </div>
-
-    <div class="mb-3">
-      <label for="message" class="form-label">Message</label>
-      <textarea name="message" id="message" rows="5" class="form-control" required></textarea>
+  </section>
+  <section class="mb-5">
+    <h2 class="text-center mb-5 text-primary">Why Choose Car Move?</h2>
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card feature-card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+            <h5 class="card-title">Verified Listings</h5>
+            <p class="card-text">All our car listings go through a thorough verification process to ensure authenticity and quality.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card feature-card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <i class="fas fa-dollar-sign fa-3x text-primary mb-3"></i>
+            <h5 class="card-title">Best Prices</h5>
+            <p class="card-text">We help you find the most competitive prices in the market with transparent pricing and no hidden fees.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card feature-card h-100 border-0 shadow-sm">
+          <div class="card-body text-center p-4">
+            <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+            <h5 class="card-title">24/7 Support</h5>
+            <p class="card-text">Our dedicated customer support team is available around the clock to assist you with any questions.</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+  <section class="mb-5 testimonials-section text-white py-5 px-4 rounded">
+    <h2 class="text-center mb-5" style="color: var(--primary-color);">What Our Customers Say</h2>
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="text-center">
+          <i class="fas fa-quote-left fa-2x mb-3" style="color: var(--primary-color); opacity: 0.8;"></i>
+          <p class="mb-3">"Car Move made finding my dream car so easy. The process was smooth and transparent!"</p>
+          <strong style="color: var(--primary-color);">- Khalid Al-Rashid</strong>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="text-center">
+          <i class="fas fa-quote-left fa-2x mb-3" style="color: var(--primary-color); opacity: 0.8;"></i>
+          <p class="mb-3">"Excellent service and great prices. I would definitely recommend Car Move to anyone."</p>
+          <strong style="color: var(--primary-color);">- Fatima Abdullah</strong>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="text-center">
+          <i class="fas fa-quote-left fa-2x mb-3" style="color: var(--primary-color); opacity: 0.8;"></i>
+          <p class="mb-3">"Professional team and reliable platform. Sold my car quickly at a fair price."</p>
+          <strong style="color: var(--primary-color);">- Mohammed Ali</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mb-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card border-0 shadow-lg rounded-3">
+          <div class="card-header bg-primary text-white text-center py-4">
+            <h4 class="mb-0"><i class="fas fa-envelope me-2"></i>Send us your feedback</h4>
+            <p class="mb-0 mt-2 opacity-75">We'd love to hear from you</p>
+          </div>
+          <div class="card-body p-5">
+            <form method="POST" action="">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="name" class="form-label fw-bold">
+                    <i class="fas fa-user me-2 text-primary"></i>Your Name
+                  </label>
+                  <input type="text" name="name" id="name" class="form-control form-control-lg" required>
+                </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label fw-bold">
+                    <i class="fas fa-envelope me-2 text-primary"></i>Email Address
+                  </label>
+                  <input type="email" name="email" id="email" class="form-control form-control-lg" required>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="message" class="form-label fw-bold">
+                  <i class="fas fa-comment me-2 text-primary"></i>Message
+                </label>
+                <textarea name="message" id="message" rows="6" class="form-control form-control-lg" placeholder="Tell us how we can help you..." required></textarea>
+              </div>
+
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="fas fa-paper-plane me-2"></i>Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mb-5">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="contact-info-card text-center p-4 rounded">
+          <i class="fas fa-map-marker-alt fa-3x text-primary mb-3"></i>
+          <h5>Visit Us</h5>
+          <p class="mb-0">King Fahd Road, Riyadh<br>Saudi Arabia, 12345</p>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="contact-info-card text-center p-4 rounded">
+          <i class="fas fa-phone fa-3x text-primary mb-3"></i>
+          <h5>Call Us</h5>
+          <p class="mb-0">+966 11 123 4567<br>Available 24/7</p>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="contact-info-card text-center p-4 rounded">
+          <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+          <h5>Email Us</h5>
+          <p class="mb-0">info@carmove.sa<br>support@carmove.sa</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
+</section>
 {% endblock %}
-
