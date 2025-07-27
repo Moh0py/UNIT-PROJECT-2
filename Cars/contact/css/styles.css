@@ -1,0 +1,416 @@
+:root {
+    --main-dark: #101820;
+    --main-gold: #F2AA4C;
+    --main-light: #fff;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--main-light);
+    color: var(--main-dark);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6,
+.navbar-brand span, 
+footer h5,
+.section-title h2,
+.hero-content h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.navbar {
+    background: var(--main-dark) !important;
+    padding: 12px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+
+.navbar.scrolled {
+    padding: 8px 0;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: var(--main-gold) !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.navbar-brand span {
+    font-size: 1.6rem;
+}
+
+.navbar-nav .nav-link {
+    margin: 0 8px;
+    padding: 8px 12px;
+    transition: all 0.3s;
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:focus,
+.navbar .nav-link:hover {
+    color: var(--main-light) !important;
+    background: var(--main-gold);
+    border-radius: 8px;
+}
+
+.navbar-toggler {
+    border-color: var(--main-gold);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(242,170,76,1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.hero-section {
+    background: linear-gradient(135deg, var(--main-dark) 0%, rgba(16,24,32,0.9) 100%);
+    color: var(--main-light);
+    padding: 120px 0 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    opacity: 0.4;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--main-gold);
+    color: var(--main-dark);
+    border-radius: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(242,170,76,0.4);
+    text-decoration: none;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(242,170,76,0.6);
+    color: var(--main-dark);
+}
+
+.services-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    color: var(--main-dark);
+    display: inline-block;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--main-gold);
+}
+
+.service-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
+    margin-bottom: 30px;
+    border: none;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 30px auto 20px;
+    background: linear-gradient(45deg, var(--main-gold) 0%, #f5c987 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+}
+
+.service-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--main-dark);
+}
+
+.service-card p {
+    color: #6c757d;
+    padding: 0 20px;
+    margin-bottom: 25px;
+}
+
+.service-link {
+    display: inline-block;
+    padding: 8px 25px;
+    background: transparent;
+    color: var(--main-gold);
+    border: 2px solid var(--main-gold);
+    border-radius: 30px;
+    margin-bottom: 30px;
+    transition: all 0.3s;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.service-link:hover {
+    background: var(--main-gold);
+    color: var(--main-dark);
+    text-decoration: none;
+}
+
+.about-section {
+    padding: 100px 0;
+    background-color: white;
+    position: relative;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+}
+
+.about-image {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.about-image img {
+    width: 100%;
+    transition: transform 0.5s;
+}
+
+.about-image:hover img {
+    transform: scale(1.03);
+}
+
+.about-text {
+    padding-right: 50px;
+}
+
+.about-text h2 {
+    font-size: 2.3rem;
+    margin-bottom: 25px;
+    color: var(--main-dark);
+    position: relative;
+}
+
+.about-text h2::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    width: 60px;
+    height: 3px;
+    background: var(--main-gold);
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.about-features {
+    margin-top: 30px;
+}
+
+.feature-item {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.feature-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--main-gold);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    flex-shrink: 0;
+}
+
+.contact-section {
+    padding: 100px 0;
+    background: linear-gradient(to left, #f9f9f9 0%, #ffffff 100%);
+}
+
+.contact-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.contact-info {
+    padding: 50px;
+    background: var(--main-dark);
+    color: white;
+    height: 100%;
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.contact-info h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--main-gold);
+}
+
+.info-item {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(242,170,76,0.1);
+    color: var(--main-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+
+.info-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.info-content p, .info-content a {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0;
+    transition: color 0.3s;
+}
+
+.info-content a:hover {
+    color: var(--main-gold);
+    text-decoration: none;
+}
+
+.contact-form {
+    padding: 50px;
+    margin-top: 30px; /* إضافة مسافة بين الفورم والهيدر */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-top: 3px solid var(--main-gold); /* تسطير في الأعلى */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* توسيط الفورم */
+}
+
+.contact-form h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--main-dark);
+    position: relative;
+    padding-bottom: 15px;
+    text-align: center; /* توسيط العنوان */
+    border-bottom: 2px solid var(--main-gold); /* تسطير أسفل العنوان */
+}
+
+.form-control {
+    height: 50px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+    text-align: center; /* توسيط النص داخل الحقول */
+}
+
+.submit-btn {
+    background: var(--main-gold);
+    color: var(--main-dark);
+    border: none;
+    padding: 12px 35px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    transition: all 0.3s;
+    width: 100%; /* اجعل الزر يأخذ عرض الفورم بالكامل */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.submit-btn:hover {
+    background: var(--main-dark);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
