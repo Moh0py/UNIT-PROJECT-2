@@ -22,12 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 cred_path = os.environ.get(
     'GOOGLE_APPLICATION_CREDENTIALS',
-    "C:\\Users\\hp\\Downloads\\cars-ad618-firebase-adminsdk-fbsvc-b58263d09c.json"
-)
-
-cred_path = os.environ.get(
-    'GOOGLE_APPLICATION_CREDENTIALS',
-    "C:/Users/hp/Downloads/cars-ad618-firebase-adminsdk-fbsvc-b58263d09c.json"
+    "C:\\Users\\hp\\Downloads\\firebase.json"
 )
 
 print("Loading Firebase credentials from:", cred_path) 
@@ -146,7 +141,7 @@ USE_TZ = True
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR , "media")
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'main' / 'static']
@@ -155,7 +150,3 @@ STATICFILES_DIRS = [BASE_DIR / 'main' / 'static']
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 
-FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  
-DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  
-
-ALLOWED_IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif']

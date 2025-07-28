@@ -2,7 +2,7 @@
 
 {% block content %}
   <h2 class="text-center mt-4 mb-4">Add New Car</h2>
-  <form method="POST" enctype="multipart/form-data" id="carForm">
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.non_field_errors }}
 
@@ -31,19 +31,23 @@
       {{ form.description }}
     </div>
 
-     <div class="mb-4">
-    <label class="form-label">Car Images</label>
-     <input 
-     type="file" name="images"  class="form-control" accept="image/*"  multiple id="imageInput">    
-                            <small class="form-text text-muted">
-                                Selected: <span id="fileCount">0</span> images
-                            </small>
-                            
-                            <!-- Safe preview container -->
-                            <div id="imagePreview" class="mt-3" style="display: none;">
-                                <div class="row" id="previewContainer"></div>
-                            </div>
-                        </div>
+    <div class="form-group">
+  <label for="{{ form.front_image.id_for_label }}">Front Image</label>
+  <input 
+    type="file" 
+    name="images" 
+    id="id_images" 
+    class="form-control" 
+    accept="image/*" 
+    multiple>
+    {{ form.front_image }}
+</div>
+
+    
+    <div class="form-group">
+      <label for="{{ form.model_3d_url.id_for_label }}">3D Model URL</label>
+      {{ form.model_3d_url }}
+    </div>
 
     <button type="submit" class="btn btn-primary">Save Car</button>
   </form>

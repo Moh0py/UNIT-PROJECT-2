@@ -23,16 +23,23 @@ class Car(models.Model):
 
 
 class CarImage(models.Model):
-    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="gallery_images")
-    image_url = models.URLField(max_length=500)      
-    order     = models.PositiveIntegerField(default=0)
-
-    class Meta:
-        ordering = ['order']
+    car = models.ForeignKey(Car, related_name='gallery_images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='car_images/')  
+    alt_text = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Image for {self.car.name} ({self.order})"
+        return f"Image for {self.car.name}"
 
+class Review(models.Model):
+    car = models.ForeignKey(Car, related_name='reviews', on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    comment = models.TextField()
+    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)], default=5)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Review by {self.name} for {self.car.name}"
 
 class Review(models.Model):
     car = models.ForeignKey(Car,on_delete=models.CASCADE,related_name='reviews')

@@ -27,8 +27,9 @@ def contact_us(request):
                 print(f"Message saved successfully with ID: {contact_msg.id}")
                 
                 messages.success(request, 'Thank you for your message! We will get back to you soon.')
-                print("Redirecting to messages_from_users")
-                return redirect('messages_from_users')
+                print("Staying on contact page instead of redirecting")
+                form = ContactMessageForm()
+                return render(request, 'contact/contact.html', {'form': form})
                 
             except Exception as e:
                 print(f"Error saving message: {str(e)}")
