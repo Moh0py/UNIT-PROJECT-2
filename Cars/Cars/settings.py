@@ -154,3 +154,8 @@ STATICFILES_DIRS = [BASE_DIR / 'main' / 'static']
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  
+
+ALLOWED_IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif']

@@ -3,28 +3,18 @@
 
 {% block content %}
 
-  <!-- Hero Video Section -->
-  <div class="hero-video-section position-relative overflow-hidden" style="height: 100vh; min-height: 600px;">
-    <video 
-      autoplay 
-      muted 
-      loop 
-      playsinline
-      class="position-absolute top-0 start-0 w-100 h-100" 
-      style="object-fit: cover; z-index: -1;">
-      <source src="{% static 'img/A true reflection of luxury. The new BMW 8 Series..mp4' %}" type="video/mp4">
-      
+  <div class="hero-video-section position-relative overflow-hidden" style="border-radius: 50px;height: 100vh; min-height: 600px;">
+    <video autoplay muted loop playsinline class="position-absolute top-0 start-0 w-100 h-100 " style=" object-fit: cover; z-index: -1;">
+      <source src="{% static 'img/home.mp4' %}" type="video/mp4">
     </video>
     
-    
     <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%); z-index: 0;"></div>
-          </div>
+    
     <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4 text-white animate-bounce">
       <i class="bi bi-chevron-double-down fs-2"></i>
     </div>
   </div>
 
-  <!-- Services Section -->
   <section id="services" class="services-section py-5 bg-light">
     <div class="container">
       <div class="text-center mb-5">
@@ -35,25 +25,25 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
             <div class="icon-wrapper mb-4">
-              <i class="bi bi-car-front fs-1 text-primary"></i>
+              <i class="bi bi-car-front fs-1 text-warning"></i>
             </div>
             <h5 class="card-title mb-3">Sell Your Car</h5>
             <p class="card-text text-muted mb-4">
               Get the best market value for your vehicle with our hassle-free selling process.
             </p>
-            <a href="#" class="btn btn-outline-primary btn-sm">Learn More →</a>
+            <a href="#" class="btn btn-outline-warning btn-sm">Learn More →</a>
           </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
             <div class="icon-wrapper mb-4">
-              <i class="bi bi-cash-stack fs-1 text-success"></i>
+              <i class="bi bi-cash-stack fs-1 text-warning"></i>
             </div>
             <h5 class="card-title mb-3">Smart Financing</h5>
             <p class="card-text text-muted mb-4">
               Flexible payment plans tailored to fit your budget and lifestyle.
             </p>
-            <a href="#" class="btn btn-outline-success btn-sm">Learn More →</a>
+            <a href="#" class="btn btn-outline-warning btn-sm">Learn More →</a>
           </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-3">
@@ -71,24 +61,23 @@
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="card h-100 border-0 shadow-sm text-center p-4 service-card">
             <div class="icon-wrapper mb-4">
-              <i class="bi bi-tools fs-1 text-danger"></i>
+              <i class="bi bi-tools fs-1 text-warning"></i>
             </div>
             <h5 class="card-title mb-3">Expert Service</h5>
             <p class="card-text text-muted mb-4">
               Professional maintenance by certified technicians using genuine parts.
             </p>
-            <a href="#" class="btn btn-outline-danger btn-sm">Learn More →</a>
+            <a href="#" class="btn btn-outline-warning btn-sm">Learn More →</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Cars Collection Section -->
   <section id="cars" class="py-5">
     <div class="container">
       <div class="text-center mb-5">
-        <h2 class="display-4 fw-bold mb-3" style="color:#F2AA4C;">Featured Collection</h2>
+        <h2 class="display-4 fw-bold mb-3" style="color:#F2AA4C;">Top #3</h2>
         <p class="lead text-muted">Handpicked vehicles for the discerning enthusiast</p>
       </div>
       <div class="row g-4">
@@ -101,15 +90,12 @@
                 {% else %}
                   <img src="{% static 'img/car-10.jpg' %}" class="card-img-top car-image" alt="{{ car.name }}">
                 {% endif %}
-                <div class="car-overlay">
-                  <a href="{% url 'cars:car_detail' car.id %}" class="btn btn-light btn-sm">View Details</a>
-                </div>
               </div>
               <div class="card-body text-center">
                 <h6 class="card-title mb-1 fw-bold">{{ car.name }} {{ car.model }}</h6>
                 <p class="text-muted small mb-2">{{ car.year }}</p>
                 <h5 class="text-primary fw-bold mb-3">${{ car.price }}</h5>
-                <a href="{% url 'cars:car_detail' car.id %}" class="btn btn-outline-primary btn-sm w-100">Explore</a>
+                <a href="{% url 'cars:car_detail' car.id %}" class="btn btn-outline-primary btn-sm w-100">Deatils</a>
               </div>
             </div>
           </div>
@@ -169,7 +155,6 @@
     animation: bounce 2s infinite;
   }
   
-  /* Service Cards */
   .service-card {
     transition: all 0.3s ease;
     cursor: pointer;
@@ -197,7 +182,6 @@
     transform: scale(1.1);
   }
   
-  /* Car Cards */
   .car-card {
     transition: all 0.3s ease;
     overflow: hidden;
@@ -236,7 +220,6 @@
     opacity: 1;
   }
   
-  /* Buttons */
   .btn {
     font-weight: 500;
     text-transform: uppercase;
@@ -261,7 +244,6 @@
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
   }
   
-  /* Responsive adjustments */
   @media (max-width: 768px) {
     .hero-video-section {
       height: 70vh;

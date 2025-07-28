@@ -5,22 +5,22 @@ class CarForm(forms.ModelForm):
     class Meta:
         model = Car
         fields = ['name', 'model', 'year', 'price', 'brand', 'description', 'front_image', 'back_image', 'model_3d_url']
-        widgets = {
-            'year': forms.NumberInput(attrs={'min': 1900, 'max': 2100}),
-            'price': forms.NumberInput(attrs={'step': 0.01}),
-            'front_image': forms.ClearableFileInput(attrs={'accept': 'image/*'}),
-            'back_image': forms.ClearableFileInput(attrs={'accept': 'image/*'}),
-            'model_3d_url': forms.URLInput(attrs={'placeholder': '3D model URL'}),
-        }
+        # widgets = {
+        #     'year': forms.NumberInput(attrs={'min': 1900, 'max': 2100}),
+        #     'price': forms.NumberInput(attrs={'step': 0.01}),
+        #     'front_image': forms.ClearableFileInput(attrs={'accept': 'image/*'}),
+        #     'back_image': forms.ClearableFileInput(attrs={'accept': 'image/*'}),
+        #     'model_3d_url': forms.URLInput(attrs={'placeholder': '3D model URL'}),
+        # }
 
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['name', 'comment']
 
-        widgets = {
-            'comment': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Write your review here...'}),
-        }
+        # widgets = {
+        #     'comment': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Write your review here...'}),
+        # }
 
 class CarFilterForm(forms.Form):
     brand = forms.ChoiceField(

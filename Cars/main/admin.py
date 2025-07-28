@@ -10,5 +10,5 @@ class CarImageInline(admin.TabularInline):
 
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ('name', 'model', 'year', 'brand')
+    list_display = ('name', 'model', 'year', 'brand','image')
     inlines = [CarImageInline]

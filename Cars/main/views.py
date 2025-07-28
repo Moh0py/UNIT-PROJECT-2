@@ -6,7 +6,7 @@ from contact import views as contact_views
 from .forms import CarForm, ReviewForm, CarFilterForm
 
 def home_view(request):
-    cars = Car.objects.all()[:3]  
+    cars = Car.objects.all()[:4]  
     return render(request, 'pages/home.html', {'cars': cars})
 
 def all_cars(request):
