@@ -6,7 +6,7 @@ from contact import views as contact_views
 from .forms import CarForm, ReviewForm, CarFilterForm
 
 def home_view(request):
-    cars = Car.objects.all()[:4]  
+    cars = Car.objects.all()[:3]  
     return render(request, 'pages/home.html', {'cars': cars})
 
 def all_cars(request):
@@ -23,7 +23,7 @@ def all_cars(request):
     if max_price:
         cars = cars.filter(price__lte=max_price)
 
-    paginator = Paginator(cars, 10)  
+    paginator = Paginator(cars, 15)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
