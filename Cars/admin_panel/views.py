@@ -13,16 +13,15 @@ def details_car(request, car_id):
 def add_car(request):
     if request.method == 'POST':
         form = CarForm(request.POST, request.FILES)
-        print("POST data:", request.POST)  # للتشخيص
-        print("FILES data:", request.FILES)  # للتشخيص
+        print("POST data:", request.POST)  
+        print("FILES data:", request.FILES)  
         
         if form.is_valid():
             car = form.save()
-            print(f"Car saved: {car.id}")  # للتشخيص
+            print(f"Car saved: {car.id}") 
             
-            # حفظ الصور الخلفية المتعددة
             back_images = request.FILES.getlist('back_images')
-            print(f"Back images count: {len(back_images)}")  # للتشخيص
+            print(f"Back images count: {len(back_images)}")  
             
             for index, image in enumerate(back_images):
                 car_image = CarImage.objects.create(
@@ -30,7 +29,7 @@ def add_car(request):
                     image=image,
                     order=index
                 )
-                print(f"Image saved: {car_image.id}")  # للتشخيص
+                print(f"Image saved: {car_image.id}")  
             
             return redirect('admin_panel:admin_cars')
         else:
