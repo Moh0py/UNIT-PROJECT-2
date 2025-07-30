@@ -32,7 +32,8 @@
         </div>
       {% endif %}
 
-      {% for img in front_image %}
+      <!-- هنا التصحيح: استخدم car.gallery_images.all -->
+      {% for img in car.gallery_images.all %}
         <div class="col-md-4 mb-3">
           <div class="card">
             <img src="{{ img.image.url }}" class="card-img-top" alt="{{ img.alt_text|default:car.name }}" style="height: 200px; object-fit: cover;">
@@ -69,31 +70,11 @@
       </form>
     </div>
     {% endif %}
-
-    <h4 class="mt-5">3D Model</h4>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    {% if car.model_3d_url %}
-      <model-viewer
-        src="{{ car.model_3d_url }}"
-        alt="{{ car.name }} 3D Model"
-        camera-controls
-        auto-rotate
-        ar
-        ios-src="{{ car.model_3d_url }}"
-        style="width:100%; height:400px; background-color: #f8f9fa; border-radius: 8px;">
-      </model-viewer>
-    {% else %}
-      <p class="text-muted">No 3D view available.</p>
-    {% endif %}
-
     <h4 class="mt-5">Reviews</h4>
     {% for review in car.reviews.all %}
       <div class="card mt-3">
         <div class="card-body">
           <h5 class="card-title">{{ review.name }}</h5>
-          <div class="mb-2">
-              
-          </div>
           <p class="card-text">{{ review.comment }}</p>
           <small class="text-muted">Reviewed on {{ review.created_at|date:"Y-m-d H:i" }}</small>
         </div>
@@ -103,4 +84,5 @@
         <p class="mb-0">No reviews yet. Be the first to review this car!</p>
       </div>
     {% endfor %}
+  </div>
 {% endblock %}

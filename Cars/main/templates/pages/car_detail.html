@@ -1,92 +1,84 @@
 {% extends 'pages/base.html' %}
-
 {% block title %}{{ car.name }} {{ car.model }} - Detail{% endblock %}
+{% block content %} 
+<div class="row"> 
+  <div class="col-md-6"> 
+    <div id="carCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="hover">
+      <div class="carousel-inner"> 
+        {% if car.front_image %} 
+        <div class="carousel-item active"> 
+          <img src="{{ car.front_image.url }}" class="d-block w-100" alt="{{ car.name }} front view" style="height:400px; object-fit:cover;"> 
+        </div> 
+        {% endif %}
+        
+        <!-- الصور الإضافية -->
+        {% for img in car.gallery_images.all %}
+        <div class="carousel-item {% if not car.front_image and not car.back_image and forloop.first %}active{% endif %}">
+          <img src="{{ img.image.url }}" class="d-block w-100" alt="{{ img.alt_text|default:car.name }}" style="height:400px; object-fit:cover;">
+        </div>
+        {% endfor %}
 
-{% block content %}
-<div class="row">
-  <div class="col-md-6">
-    <div id="carCarousel" class="carousel slide carousel-fade" 
-         data-bs-ride="carousel" 
-         data-bs-interval="3000" 
-         data-bs-pause="hover">
-      
-      <div class="carousel-inner">
-        {% if car.front_image %}
-        <div class="carousel-item active">
-          <img src="{{ car.front_image.url }}"
-               class="d-block w-100"
-               alt="{{ car.name }} front view"
-               style="height:400px; object-fit:cover;">
-        </div>
-        {% endif %}
-       
-        {% if car.back_image %}
-        <div class="carousel-item {% if not car.front_image %}active{% endif %}">
-          <img src="{{ car.back_image.url }}"
-               class="d-block w-100"
-               alt="{{ car.name }} back view"
-               style="height:400px; object-fit:cover;">
-        </div>
-        {% endif %}
+        {% if car.back_image %} 
+        <div class="carousel-item {% if not car.front_image %}active{% endif %}"> 
+          <img src="{{ car.back_image.url }}" class="d-block w-100" alt="{{ car.name }} back view" style="height:400px; object-fit:cover;"> 
+        </div> 
+        {% endif %} 
       </div>
       
-      {% if car.front_image or car.back_image %}
-      <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Undo</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-      {% endif %}
-    </div>
+      {% if car.front_image or car.back_image or car.gallery_images.all %} 
+      <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev"> 
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span> 
+        <span class="visually-hidden">Previous</span> 
+      </button> 
+      <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next"> 
+        <span class="carousel-control-next-icon" aria-hidden="true"></span> 
+        <span class="visually-hidden">Next</span> 
+      </button> 
+      {% endif %} 
+    </div> 
   </div>
 
-  <div class="col-md-6">
-    <h2>{{ car.name }} {{ car.model }} ({{ car.year }})</h2>
-    <p><strong>Brand:</strong> {{ car.brand }}</p>
-    <p><strong>Price:</strong> ${{ car.price }}</p>
-    <p><strong>description:</strong> <p>{{ car.description }}</p>
+  <div class="col-md-6"> 
+    <h2>{{ car.name }} {{ car.model }} ({{ car.year }})</h2> 
+    <p><strong>Brand:</strong> {{ car.brand }}</p> 
+    <p><strong>Price:</strong> ${{ car.price }}</p> 
+    <p><strong>Description:</strong></p>
+    <p>{{ car.description }}</p>
     
-
-    {% if car.model_3d_url %}
-    <p>
-      <strong>3D Model:</strong>
-      <a href="{{ car.model_3d_url }}" target="_blank" class="btn btn-sm btn-outline-primary">
-        View 3D
-      </a>
-    </p>
-    {% endif %}
-  </div>
+    {% if car.model_3d_url %} 
+    <p> 
+      <strong>3D Model:</strong> 
+      <a href="{{ car.model_3d_url }}" target="_blank" class="btn btn-sm btn-outline-primary"> 
+        View 3D 
+      </a> 
+    </p> 
+    {% endif %} 
+  </div> 
 </div>
 
-<h4 class="mt-5">Review:</h4>
-<form method="POST" action="{% url 'cars:add_review' car.id %}">
-  {% csrf_token %}
-  <div class="form-group">
-    <label for="name">Your Name:</label>
-    <input type="text" name="name" id="name" class="form-control" required>
-  </div>
-  <div class="form-group">
-    <label for="comment">Your Comment:</label>
-    <textarea name="comment" id="comment" class="form-control" rows="4" required></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary mt-3">Submit Review</button>
+<h4 class="mt-5">Review:</h4> 
+<form method="POST" action="{% url 'cars:add_review' car.id %}"> 
+  {% csrf_token %} 
+  <div class="form-group"> 
+    <label for="name">Your Name:</label> 
+    <input type="text" name="name" id="name" class="form-control" required> 
+  </div> 
+  <div class="form-group"> 
+    <label for="comment">Your Comment:</label> 
+    <textarea name="comment" id="comment" class="form-control" rows="4" required></textarea> 
+  </div> 
+  <button type="submit" class="btn btn-primary mt-3">Submit Review</button> 
 </form>
 
-<h4 class="mt-5">Reviews</h4>
-    {% for review in car.reviews.all %}
-      <div class="mt-3">
-        <h5>{{ review.name }}</h5>
-        <p>{{ review.comment }}</p>
-        <small class="text-muted">Reviewed on {{ review.created_at|date:"Y-m-d H:i" }}</small>
-      </div>
-    {% empty %}
-      <p class="text-muted">No reviews yet. Be the first to review this car!</p>
-    {% endfor %}
-  </div>
+<h4 class="mt-5">Reviews</h4> 
+{% for review in car.reviews.all %} 
+<div class="mt-3"> 
+  <h5>{{ review.name }}</h5> 
+  <p>{{ review.comment }}</p> 
+  <small class="text-muted">Reviewed on {{ review.created_at|date:"Y-m-d H:i" }}</small> 
+</div> 
+{% empty %} 
+<p class="text-muted">No reviews yet. Be the first to review this car!</p> 
+{% endfor %} 
+</div> 
 {% endblock %}
-
-  
-

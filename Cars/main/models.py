@@ -15,7 +15,7 @@ class Car(models.Model):
     brand = models.CharField(max_length=100, choices=BRAND_CHOICES)
     description = models.TextField(blank=True, null=True)
     front_image = models.ImageField(upload_to='image/', blank=True, null=True)
-    back_image  = models.ImageField(upload_to='image/', blank=True, null=True)
+    back_image = models.ImageField(upload_to='image/', blank=True, null=True)
     model_3d_url = models.URLField(blank=True, null=True)
 
     def __str__(self):
@@ -24,12 +24,17 @@ class Car(models.Model):
 
 class CarImage(models.Model):
     car = models.ForeignKey(Car, related_name='gallery_images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='car_images/')  
+    image = models.ImageField(upload_to='cars/gallery/')
+    order = models.IntegerField(default=0)
     alt_text = models.CharField(max_length=200, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
         return f"Image for {self.car.name}"
+
 
 class Review(models.Model):
     car = models.ForeignKey(Car, related_name='reviews', on_delete=models.CASCADE)
@@ -40,12 +45,3 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review by {self.name} for {self.car.name}"
-
-class Review(models.Model):
-    car = models.ForeignKey(Car,on_delete=models.CASCADE,related_name='reviews')
-    name = models.CharField(max_length=255)
-    comment = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Review for {self.car.name} by {self.name}"
