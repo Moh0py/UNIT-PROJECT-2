@@ -42,16 +42,7 @@ git clone https://github.com/yourusername/car-move.git
 cd car-move
 ```
 
-### 2. Create Virtual Environment
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
 
-# macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-```
 
 ### 3. Install Dependencies
 ```bash
@@ -86,26 +77,6 @@ Visit `http://localhost:8000` to see the application!
 
 ## 📁 Project Structure
 
-```
-car-move/
-├── 📁 car_move/              # Main project directory
-│   ├── settings.py           # Django settings
-│   ├── urls.py              # Main URL configuration
-│   └── wsgi.py              # WSGI configuration
-├── 📁 cars/                 # Cars app
-│   ├── models.py            # Database models
-│   ├── views.py             # View functions
-│   ├── forms.py             # Django forms
-│   ├── urls.py              # App URLs
-│   └── 📁 templates/        # HTML templates
-├── 📁 media/                # Uploaded files
-│   └── 📁 car_images/       # Car images
-├── 📁 static/               # Static files
-│   ├── 📁 css/              # Stylesheets
-│   ├── 📁 js/               # JavaScript files
-│   └── 📁 images/           # Static images
-├── requirements.txt         # Python dependencies
-└── README.md               # This file
 ```
 
 ## 🗄️ Database Models
