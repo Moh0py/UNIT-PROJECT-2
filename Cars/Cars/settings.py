@@ -33,6 +33,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://carmove.up.railway.app",
+    "https://*.up.railway.app",
+    "http://127.0.0.1:8000"
+]
 # Application definition
 
 INSTALLED_APPS = [
