@@ -10,8 +10,6 @@
           <img src="{{ car.front_image.url }}" class="d-block w-100" alt="{{ car.name }} front view" style="height:400px; object-fit:cover;"> 
         </div> 
         {% endif %}
-        
-        <!-- الصور الإضافية -->
         {% for img in car.gallery_images.all %}
         <div class="carousel-item {% if not car.front_image and not car.back_image and forloop.first %}active{% endif %}">
           <img src="{{ img.image.url }}" class="d-block w-100" alt="{{ img.alt_text|default:car.name }}" style="height:400px; object-fit:cover;">
